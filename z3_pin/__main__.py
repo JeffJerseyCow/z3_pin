@@ -3,7 +3,7 @@ from z3 import *
 
 def constrain_values(solver, value_list):
     for value in value_list:
-        solver.add(value >= 1, value <= 9)
+        solver.add(value >= 0, value <= 9)
 
 
 def check_sat_print(solver, value_list, constraint_set):
@@ -48,6 +48,22 @@ def print_three_repeated_digits_model(value_list, constraint_set):
     check_sat_print(solver, value_list, constraint_set)
 
 
+def print_four_repeated_digits_model(value_list, constraint_set):
+    solver = Solver()
+    constrain_values(solver, value_list)
+
+    constraints = []
+    for position in range(0, len(value_list) - 3):
+        constraints.append(And([
+            value_list[position] == value_list[position + 1],
+            value_list[position + 1] == value_list[position + 2],
+            value_list[position + 2] == value_list[position + 3]])
+        )
+    solver.add(Or(constraints))
+
+    check_sat_print(solver, value_list, constraint_set)
+
+
 def print_two_repeated_digits_model(value_list, constraint_set):
     solver = Solver()
     constrain_values(solver, value_list)
@@ -70,8 +86,8 @@ def print_two_consecutive_digits_model(value_list, constraint_set):
     constraints = []
     for position in range(0, len(value_list) - 3):
         constraints.append(And(
-            value_list[position] == value_list[position + 1] - 1,
-            value_list[position + 2] == value_list[position + 3] - 1)
+            value_list[position] == value_list[position + 2],
+            value_list[position + 1] == value_list[position + 3])
         )
     solver.add(Or(constraints))
 
@@ -95,9 +111,11 @@ def main():
     value_list = [Int(str(i)) for i in range(0, length)]
 
     print_consecutive_digits_model(value_list, constraint_set)
-    print_three_repeated_digits_model(value_list, constraint_set)
+    print_four_repeated_digits_model(value_list, constraint_set)
     print_two_repeated_digits_model(value_list, constraint_set)
-    print_two_consecutive_digits_model(value_list, constraint_set)
+    # Uncomment the line(s) to include constrains
+    # print_two_consecutive_digits_model(value_list, constraint_set)
+    # print_three_repeated_digits_model(value_list, constraint_set)
 
     for item in constraint_set:
         print(item)
