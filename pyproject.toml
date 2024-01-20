@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "z3_pin"
+version = "0.1.0"
+description = ""
+authors = ["Chris Powell <chris@fmlyc.uk>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+z3-solver = "^4.12.4.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+z3_pin = "z3_pin.__main__:main"
