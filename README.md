@@ -19,7 +19,7 @@ I prefer the traditional make build tool, but there are other and they all insta
 
 After installing z3 on your system, simply install requirements with poetry - you must get in the z3_pin project directory. And run the application for a PIN length - in this example 5-digit pins.
 
-```python3
+```bash
 poetry install
 poetry run z3_pin -- 5
 ```
