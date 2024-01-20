@@ -6,7 +6,7 @@ The purpose of the source code is to generate lists of bad Personal Identificati
 - No more than one two digit repeating code, e.g. 12266 (2266) and 66554 (6655)
 - No more than one consecutive repeating code, e.g. 12128 (1212) and 75656 (5656)
 
-With these constraints set at a specific length, e.g. a 5-digit pin. The Satisfiability Moduloe Theories (SMT) z3 is used to print out all offending PINs to create a blacklist.
+With these constraints set at a specific length, e.g. a 5-digit pin. The Satisfiability Moduloe Theories (SMT) prover - z3 - is used to print out all offending PINs to create a blacklist.
 
 The purpose of the blacklist is to verify common PINs during PIN authentication and creation within applications.
 
